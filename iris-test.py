@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 # Load the Iris dataset
-df = pd.read_csv('iris.data.csv')
+df = pd.read_csv('datasets/iris.data.csv')
 #iris = load_iris()
 X = df.drop('target', axis=1)#iris.data
 y = df['target'] #iris.target
@@ -35,17 +35,14 @@ accuracy = accuracy_score(y_test, y_pred)
 conf_matrix = confusion_matrix(y_test, y_pred)
 class_report = classification_report(y_test, y_pred)
 
-'''
-print(f'Accuracy: {accuracy}')
-print('Confusion Matrix:')
-print(conf_matrix)
-print('Classification Report:')
-print(class_report)
-'''
+# Sample Iris-setosa data
+original_data_point = [4.9,3.0,1.4,0.2] 
 
-# Sample random data point (standardized)
-sample_data = np.array([[-0.23454301,  3.05147423,  0.84540058,  0.40279047]])
+# Transform the original data point using the fitted scaler
+original_data_point_scaled = scaler.transform([original_data_point])
 
 # Predict the class for the sample data point
-sample_prediction = knn.predict(sample_data)
+sample_prediction = knn.predict(original_data_point_scaled)
+
+# Print the Prediction result
 print(sample_prediction)
